@@ -1,6 +1,7 @@
 import React from 'react';
 
-import DeezerService from '../../../services/DeezerService';
+import { useAppDispatch } from '../../../store/hooks';
+import { setUpTracksAndAlbums } from '../../../store/slices/tracksSlice';
 import classes from './Header.module.css';
 
 interface FormElements extends HTMLFormControlsCollection {
@@ -12,18 +13,15 @@ interface CustomFormElement extends HTMLFormElement {
 }
 
 function Header() {
+  const dispatch = useAppDispatch();
+
   const submitHandler = async (event: React.FormEvent<CustomFormElement>) => {
     event.preventDefault();
     const inputValue = event.currentTarget.elements.trackInput.value;
     const encodedInput = encodeURI(inputValue);
 
     if (encodedInput.trim().length > 0) {
-      try {
-        const { data } = await DeezerService.searchTracks(encodedInput);
-        console.log(data);
-      } catch {
-        alert('error!');
-      }
+      dispatch(setUpTracksAndAlbums(encodedInput));
     }
   };
 

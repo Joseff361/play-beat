@@ -48,3 +48,13 @@ export interface TracksResponse {
   next: string;
   total: number;
 }
+
+export interface AlbumResponse {
+  tracks: {
+    data: Track[];
+  };
+}
+
+export interface ArtistResponse {
+  data: Track[];
+}
