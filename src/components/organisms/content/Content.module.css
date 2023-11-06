@@ -1,0 +1,16 @@
+.content__container {
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  height: 70vh;
+}
+
+.content__main-results {
+  flex: 0.6;
+  background-color: green;
+}
+
+.content__related-results {
+  flex: 0.4;
+  background-color: blue;
+}

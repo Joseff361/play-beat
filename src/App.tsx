@@ -1,15 +1,20 @@
+import { Provider } from 'react-redux';
+
 import './App.css';
-import Content from './components/layouts/content/Content';
-import Footer from './components/layouts/footer/Footer';
-import Header from './components/layouts/header/Header';
+import Content from './components/organisms/content/Content';
+import Footer from './components/organisms/footer/Footer';
+import Header from './components/organisms/header/Header';
+import { store } from './store/store';
 
 function App() {
   return (
-    <main>
-      <Header />
-      <Content />
-      <Footer />
-    </main>
+    <Provider store={store}>
+      <main>
+        <Header />
+        <Content />
+        <Footer />
+      </main>
+    </Provider>
   );
 }
 

@@ -24,7 +24,7 @@ interface Album {
   type: string;
 }
 
-interface Track {
+export interface Track {
   id: number;
   readable: boolean;
   title: string;
