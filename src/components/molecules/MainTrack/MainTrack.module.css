@@ -1,4 +1,57 @@
 .main-track__container {
-  height: 50%;
-  background-color: red;
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.main-track__image {
+  height: 70%;
+  width: auto;
+  margin-right: 20px;
+  border-radius: 16px;
+  box-shadow: 1px 1px 10px #888888;
+  cursor: pointer;
+}
+
+.main-track__content {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.main-track__title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.main-track__subtitle {
+  font-size: 18px;
+  color: #5b5b5b;
+}
+
+.main-track__button {
+  border: none;
+  cursor: pointer;
+  padding: 8px 30px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-family: inherit;
+}
+
+.main-track__button--play {
+  background-color: var(--green);
+  color: white;
+  box-shadow: 1px 1px 10px var(--green);
+}
+
+.main-track__button--follow {
+  border-color: var(--green);
+  border-width: 1px;
+  border-style: solid;
+  color: var(--green);
+  background-color: white;
+  margin-left: 20px;
 }

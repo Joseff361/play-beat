@@ -20,9 +20,6 @@
 
 .track-item__container--small {
   width: 10%;
-  /* border-width: 1px;
-  border-color: black;
-  border-style: solid; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,9 +27,6 @@
 
 .track-item__container--medium {
   width: 60%;
-  /* border-width: 1px;
-  border-color: black;
-  border-style: solid; */
   padding: 8px 0px;
 }
 
