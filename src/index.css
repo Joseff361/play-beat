@@ -24,3 +24,14 @@ body {
 .fa-regular {
   font-size: 18px;
 }
+
+.fa-magnifying-glass {
+  font-size: 22px;
+  color: #979797;
+}
+
+.fa-gear,
+.fa-bell {
+  font-size: 30px;
+  color: #979797;
+}

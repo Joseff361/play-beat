@@ -3,7 +3,6 @@ import classes from './MainTrack.module.css';
 
 function MainTrack() {
   const mainTrack = useAppSelector(state => state.tracks.currentTrack);
-  console.log(mainTrack);
 
   return (
     <div className={classes['main-track__container']}>
