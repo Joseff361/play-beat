@@ -1,0 +1,52 @@
+.track-mid-item__container {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.track-mid-item__header {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.track-mid-item__header__line {
+  height: 1px;
+  background-color: #e9e9e9;
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.track-mid-item__list {
+  width: 100%;
+  height: 80%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: row;
+  overflow-y: hidden;
+}
+
+.track-mid-item__item-container {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.track-mid-item__image {
+  height: 70%;
+  aspect-ratio: 12/11;
+  border-radius: 12px;
+}
+
+.track-mid-item__title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.track-mid-item__subtitle {
+  color: #484848;
+}
