@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { Track } from '../../../models/Tracks';
-import classes from './TrackMidItem.module.css';
+import classes from './TrackMidItems.module.css';
 
 interface Props {
   title: string;
   tracks: Track[];
+  onClickTrack: (track: Track) => void;
 }
 
 const ITEMS_TO_MOVE = 2;
 
-function TrackMidItem({ title, tracks }: Props) {
+function TrackMidItems({ title, tracks, onClickTrack }: Props) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const itemsRef = useRef<any>([]);
   const [currentItemIndex, setCurrentItemIndex] =
@@ -72,6 +73,7 @@ function TrackMidItem({ title, tracks }: Props) {
             className={classes['track-mid-item__item-container']}
             key={index}
             ref={el => (itemsRef.current[index] = el)}
+            onClick={() => onClickTrack(item)}
           >
             <img
               className={classes['track-mid-item__image']}
@@ -89,4 +91,4 @@ function TrackMidItem({ title, tracks }: Props) {
   );
 }
 
-export default TrackMidItem;
+export default TrackMidItems;

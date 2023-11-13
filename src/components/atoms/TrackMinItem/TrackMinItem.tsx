@@ -6,9 +6,16 @@ interface Props {
   imageSource: string;
   trackName: string;
   trackArtist: string;
+  onClick: () => void;
 }
 
-function TrackMinItem({ order, imageSource, trackName, trackArtist }: Props) {
+function TrackMinItem({
+  order,
+  imageSource,
+  trackName,
+  trackArtist,
+  onClick,
+}: Props) {
   const buildOrder = (value: number): string => {
     if (value < 10) {
       return `0${order}.`;
@@ -18,7 +25,7 @@ function TrackMinItem({ order, imageSource, trackName, trackArtist }: Props) {
   };
 
   return (
-    <li className={classes['track-item__container']}>
+    <li className={classes['track-item__container']} onClick={onClick}>
       <div className={classes['track-item__container--small']}>
         {buildOrder(order)}
       </div>
