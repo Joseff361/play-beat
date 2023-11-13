@@ -1,0 +1,37 @@
+.player__container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.player__timer-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player__volume-container {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player__info {
+  width: 20%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.player__info__description {
+  display: flex;
+}
+
+.player__info__description__image {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin-right: 10px;
+}

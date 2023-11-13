@@ -1,9 +1,9 @@
 import { Provider } from 'react-redux';
 
 import './App.css';
-import Content from './components/organisms/content/Content';
-import Footer from './components/organisms/footer/Footer';
-import Header from './components/organisms/header/Header';
+import Content from './components/organisms/Content/Content';
+import Footer from './components/organisms/Footer/Footer';
+import Header from './components/organisms/Header/Header';
 import { store } from './store/store';
 
 function App() {

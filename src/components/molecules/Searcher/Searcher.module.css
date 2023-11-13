@@ -13,7 +13,7 @@
   display: flex;
   justify-self: start;
   align-items: center;
-  background-color: #f4f4f4;
+  background-color: var(--gray-2);
   border-radius: 16px;
   overflow: hidden;
 }
@@ -32,7 +32,7 @@
   font-family: inherit;
   font-size: 22px;
   border: 0;
-  background-color: #f4f4f4;
+  background-color: var(--gray-2);
 }
 
 .searcher__input:focus {

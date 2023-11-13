@@ -1,19 +1,23 @@
 :root {
   box-sizing: border-box;
   --green: #3cbc6e;
+  --gray: #bcbcbc;
+  --gray-2: #f4f4f4;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Rajdhani', sans-serif;
+  background-color: #d1d3df;
 }
 
 .fa-heart {
   color: #dedede;
 }
 
-.fa-play {
+.fa-play,
+.fa-pause {
   color: #dedede;
 }
 

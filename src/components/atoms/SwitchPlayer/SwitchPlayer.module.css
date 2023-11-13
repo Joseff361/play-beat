@@ -1,0 +1,12 @@
+.player-container {
+  border-color: #dbdbdb;
+  border-width: 1px;
+  border-style: solid;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

@@ -1,8 +1,8 @@
 main {
   max-width: 1200px;
-  border-width: 1;
-  border-color: black;
-  border-style: solid;
-  align-self: center;
   margin: auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: white;
+  margin-top: 5vh;
 }

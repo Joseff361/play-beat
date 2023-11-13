@@ -1,3 +1,4 @@
+import SwitchPlayer from '../SwitchPlayer/SwitchPlayer';
 import classes from './TrackMinItem.module.css';
 
 interface Props {
@@ -36,9 +37,7 @@ function TrackMinItem({ order, imageSource, trackName, trackArtist }: Props) {
         <i className="fa-regular fa-heart"></i>
       </span>
       <span className={classes['track-item__container--small']}>
-        <div className={classes['track-item__play-container']}>
-          <i className="fa-solid fa-play"></i>
-        </div>
+        <SwitchPlayer onClick={() => null} />
       </span>
     </li>
   );
