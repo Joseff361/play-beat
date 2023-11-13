@@ -5,3 +5,14 @@
   margin: 0;
   overflow-x: hidden;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.playlist__container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.playlist__container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

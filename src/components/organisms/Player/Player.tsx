@@ -1,7 +1,9 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
 import { useAppSelector } from '../../../store/hooks';
+import ProgressBar from '../../atoms/ProgressBar/ProgressBar';
 import SwitchPlayer from '../../atoms/SwitchPlayer/SwitchPlayer';
+import Volume from '../../atoms/Volume/Volume';
 import classes from './Player.module.css';
 
 const player = new Audio();
@@ -39,7 +41,6 @@ function Player() {
   }, [currentTrack]);
 
   const clickPlayer = () => {
-    console.log(player.currentTime);
     if (isPlaying) {
       player.pause();
       setIsPlaying(false);
@@ -52,7 +53,20 @@ function Player() {
   const changeVolumeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     player.volume = +event.target.value / 100;
     setVolume(+event.target.value);
-    console.log(player.duration);
+  };
+
+  const handleClickVolumen = () => {
+    if (volume !== 0) {
+      player.volume = 0;
+      setVolume(0);
+    } else {
+      player.volume = DEFAULT_VOLUMEN / 100;
+      setVolume(DEFAULT_VOLUMEN);
+    }
+  };
+
+  const formatTime = (value: number) => {
+    return `00: ${Math.round(value)}`;
   };
 
   return (
@@ -66,7 +80,9 @@ function Player() {
           />
           <div>
             <b>{currentTrack?.artist.name}</b>
-            <div>{currentTrack?.title}</div>
+            <div className={classes['player__info__description__track']}>
+              {currentTrack?.title}
+            </div>
           </div>
         </div>
         <SwitchPlayer
@@ -76,25 +92,22 @@ function Player() {
         />
       </div>
       <div className={classes['player__timer-container']}>
-        <input
-          style={{ width: '80%' }}
-          className={classes['player__timer']}
-          type="range"
-          max={duration}
-          value={currentTime}
-          min={0}
-          onChange={() => null}
-        />
+        <div>{formatTime(duration)}</div>
+        <ProgressBar duration={duration} progress={currentTime} />
       </div>
       <div className={classes['player__volume-container']}>
         <input
-          style={{ width: '30%', cursor: 'pointer' }}
+          style={{
+            marginRight: 20,
+            background: `linear-gradient(to right, #3cbc6e ${volume}%, #bcbcbc ${volume}%)`,
+          }}
           type="range"
           max={100}
           min={0}
           value={volume}
           onChange={changeVolumeHandler}
         />
+        <Volume volume={volume} onClick={handleClickVolumen} />
       </div>
     </section>
   );

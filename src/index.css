@@ -39,3 +39,71 @@ body {
   font-size: 30px;
   color: #979797;
 }
+
+.fa-volume-xmark,
+.fa-volume-off,
+.fa-volume-low,
+.fa-volume-high {
+  font-size: 22px;
+  color: #979797;
+}
+
+.fa-angle-left {
+  color: #979797;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.fa-angle-left:hover {
+  color: var(--green);
+}
+
+input[type='range'] {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  width: 100%;
+  outline: none;
+  border-radius: 15px;
+  border-width: 0;
+  /*  overflow: hidden;  remove this line*/
+
+  /* New additions */
+  height: 6px;
+  width: 30%;
+  cursor: pointer;
+}
+
+/* Special styling for WebKit/Blink */
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #ffffff;
+  cursor: pointer;
+
+  border: 2px solid var(--green);
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+}
+
+/* All the same stuff for Firefox */
+input[type='range']::-moz-range-thumb {
+  border: 2px solid var(--green);
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type='range']::-ms-thumb {
+  border: 2px solid var(--green);
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+}
