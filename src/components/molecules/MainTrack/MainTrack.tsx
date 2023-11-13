@@ -1,8 +1,16 @@
-import { useAppSelector } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { switchPlayer } from '../../../store/slices/tracksSlice';
 import classes from './MainTrack.module.css';
 
 function MainTrack() {
   const mainTrack = useAppSelector(state => state.tracks.currentTrack);
+  const isPlaying = useAppSelector(state => state.tracks.isPlaying);
+
+  const dispatch = useAppDispatch();
+
+  const switchPlayerHandler = () => {
+    dispatch(switchPlayer());
+  };
 
   return (
     <div className={classes['main-track__container']}>
@@ -21,9 +29,10 @@ function MainTrack() {
         </div>
         <div>
           <button
+            onClick={switchPlayerHandler}
             className={`${classes['main-track__button']} ${classes['main-track__button--play']}`}
           >
-            Play
+            {isPlaying ? 'Pause' : 'Play'}
           </button>
           <button
             style={{ cursor: 'inherit' }}

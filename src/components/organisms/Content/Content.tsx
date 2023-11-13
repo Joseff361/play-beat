@@ -21,12 +21,12 @@ function Content() {
   );
 
   const selectAlbumTracksHandler = (track: Track) => {
-    dispatch(setCurrentTrack(track));
+    dispatch(setCurrentTrack({ track: track, autoplay: true }));
     dispatch(setTrackResultList(albumRelatedTracks));
   };
 
   const selectArtistTracksHandler = (track: Track) => {
-    dispatch(setCurrentTrack(track));
+    dispatch(setCurrentTrack({ track: track, autoplay: true }));
     dispatch(setTrackResultList(artistRelatedTracks));
   };
 
@@ -38,14 +38,14 @@ function Content() {
       </div>
       <div className={classes['content__related-results']}>
         <TrackMidItems
-          onClickTrack={selectAlbumTracksHandler}
-          title="Album"
-          tracks={albumRelatedTracks}
-        />
-        <TrackMidItems
           onClickTrack={selectArtistTracksHandler}
           title="Artist"
           tracks={artistRelatedTracks}
+        />
+        <TrackMidItems
+          onClickTrack={selectAlbumTracksHandler}
+          title="Album"
+          tracks={albumRelatedTracks}
         />
       </div>
     </section>

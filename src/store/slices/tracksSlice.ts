@@ -7,6 +7,7 @@ import {
 
 import { Track } from '../../models/Tracks';
 import DeezerService from '../../services/DeezerService';
+import PlayerService from '../../services/PlayerService';
 import { RootState } from '../store';
 
 interface TracksState {
@@ -15,6 +16,7 @@ interface TracksState {
   albumRelatedTracks: Track[];
   artistRelatedTracks: Track[];
   loading: boolean;
+  isPlaying: boolean;
 }
 
 const initialState: TracksState = {
@@ -23,14 +25,26 @@ const initialState: TracksState = {
   albumRelatedTracks: [],
   artistRelatedTracks: [],
   loading: true,
+  isPlaying: false,
 };
+
+interface SetCurrentTrack {
+  track: Track;
+  autoplay: boolean;
+}
 
 export const tracksSlice = createSlice({
   name: 'tracks',
   initialState,
   reducers: {
-    setCurrentTrack: (state, action: PayloadAction<Track>) => {
-      state.currentTrack = action.payload;
+    setCurrentTrack: (state, action: PayloadAction<SetCurrentTrack>) => {
+      state.currentTrack = action.payload.track;
+      PlayerService.player.src = action.payload.track.preview;
+
+      if (action.payload.autoplay) {
+        PlayerService.player.play();
+        state.isPlaying = true;
+      }
     },
     setTrackResultList: (state, action: PayloadAction<Track[]>) => {
       state.trackResultList = [...action.payload];
@@ -44,6 +58,18 @@ export const tracksSlice = createSlice({
     updateLoadingState: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
+    setIsPlaying: (state, action: PayloadAction<boolean>) => {
+      state.isPlaying = action.payload;
+    },
+    switchPlayer: state => {
+      if (state.isPlaying) {
+        PlayerService.player.pause();
+        state.isPlaying = false;
+      } else {
+        PlayerService.player.play();
+        state.isPlaying = true;
+      }
+    },
   },
 });
 
@@ -56,7 +82,13 @@ export const setUpTracksAndAlbums = (
     try {
       const { data } = await DeezerService.searchTracks(text);
       if (data.length > 0) {
-        dispatch(tracksSlice.actions.setCurrentTrack(data[0]));
+        dispatch(tracksSlice.actions.setIsPlaying(false));
+        dispatch(
+          tracksSlice.actions.setCurrentTrack({
+            track: data[0],
+            autoplay: false,
+          }),
+        );
         dispatch(tracksSlice.actions.setTrackResultList(data));
 
         const mainTrack = data[0];
@@ -78,7 +110,11 @@ export const setUpTracksAndAlbums = (
   };
 };
 
-export const { setCurrentTrack, setTrackResultList, setAlbumRelatedTracks } =
-  tracksSlice.actions;
+export const {
+  setCurrentTrack,
+  setTrackResultList,
+  setAlbumRelatedTracks,
+  switchPlayer,
+} = tracksSlice.actions;
 
 export default tracksSlice.reducer;

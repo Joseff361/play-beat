@@ -1,66 +1,57 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { useAppSelector } from '../../../store/hooks';
+import PlayerService from '../../../services/PlayerService';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { switchPlayer } from '../../../store/slices/tracksSlice';
 import ProgressBar from '../../atoms/ProgressBar/ProgressBar';
 import SwitchPlayer from '../../atoms/SwitchPlayer/SwitchPlayer';
 import Volume from '../../atoms/Volume/Volume';
 import classes from './Player.module.css';
 
-const player = new Audio();
 const DEFAULT_VOLUMEN = 80;
 
 function Player() {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [volume, setVolume] = useState<number>(DEFAULT_VOLUMEN);
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
 
+  const dispatch = useAppDispatch();
+
   const currentTrack = useAppSelector(state => state.tracks.currentTrack);
+  const isPlaying = useAppSelector(state => state.tracks.isPlaying);
 
   useEffect(() => {
-    player.addEventListener('canplaythrough', () => {
-      player.volume = DEFAULT_VOLUMEN / 100;
-      setDuration(player.duration);
+    PlayerService.player.addEventListener('canplaythrough', () => {
+      PlayerService.player.volume = DEFAULT_VOLUMEN / 100;
+      setDuration(PlayerService.player.duration);
       setVolume(DEFAULT_VOLUMEN);
     });
 
-    player.addEventListener('timeupdate', () => {
-      setCurrentTime(player.currentTime);
+    PlayerService.player.addEventListener('timeupdate', () => {
+      setCurrentTime(PlayerService.player.currentTime);
     });
 
     return () => {
-      player.removeEventListener('canplaythrough', () => null);
-      player.removeEventListener('timeupdate', () => null);
+      PlayerService.player.removeEventListener('canplaythrough', () => null);
+      PlayerService.player.removeEventListener('timeupdate', () => null);
     };
   }, []);
 
-  useEffect(() => {
-    if (currentTrack) {
-      player.src = currentTrack.preview;
-    }
-  }, [currentTrack]);
-
   const clickPlayer = () => {
-    if (isPlaying) {
-      player.pause();
-      setIsPlaying(false);
-    } else {
-      player.play();
-      setIsPlaying(true);
-    }
+    dispatch(switchPlayer());
   };
 
   const changeVolumeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    player.volume = +event.target.value / 100;
+    PlayerService.player.volume = +event.target.value / 100;
     setVolume(+event.target.value);
   };
 
   const handleClickVolumen = () => {
     if (volume !== 0) {
-      player.volume = 0;
+      PlayerService.player.volume = 0;
       setVolume(0);
     } else {
-      player.volume = DEFAULT_VOLUMEN / 100;
+      PlayerService.player.volume = DEFAULT_VOLUMEN / 100;
       setVolume(DEFAULT_VOLUMEN);
     }
   };

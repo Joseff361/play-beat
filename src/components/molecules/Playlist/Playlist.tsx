@@ -11,7 +11,7 @@ function Playlist() {
   const dispatch = useAppDispatch();
 
   const selectTrackHandler = (track: Track) => {
-    dispatch(setCurrentTrack(track));
+    dispatch(setCurrentTrack({ track: track, autoplay: true }));
   };
 
   return (
