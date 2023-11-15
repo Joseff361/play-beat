@@ -1,3 +1,4 @@
+import 'react-loading-skeleton/dist/skeleton.css';
 import { Provider } from 'react-redux';
 
 import './App.css';

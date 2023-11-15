@@ -37,6 +37,12 @@
   margin-right: 10px;
 }
 
+.player__info__description__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .player__info__description__track {
   text-overflow: ellipsis;
   overflow: hidden;

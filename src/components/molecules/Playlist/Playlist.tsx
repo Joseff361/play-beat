@@ -1,12 +1,16 @@
+import Skeleton from 'react-loading-skeleton';
+
 import { Track } from '../../../models/Tracks';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { setCurrentTrack } from '../../../store/slices/tracksSlice';
+import { SkeletonStyles } from '../../../styles/skeletonStyles';
 import TrackMinItem from '../../atoms/TrackMinItem/TrackMinItem';
 import classes from './Playlist.module.css';
 
 function Playlist() {
   const tracks = useAppSelector(state => state.tracks.trackResultList);
   const currentTrack = useAppSelector(state => state.tracks.currentTrack);
+  const loading = useAppSelector(state => state.tracks.loading);
 
   const dispatch = useAppDispatch();
 
@@ -14,8 +18,8 @@ function Playlist() {
     dispatch(setCurrentTrack({ track: track, autoplay: true }));
   };
 
-  return (
-    <ul className={classes['playlist__container']}>
+  let content = (
+    <>
       {tracks
         .filter(t => t.id !== currentTrack?.id)
         .map((track, index) => (
@@ -28,8 +32,14 @@ function Playlist() {
             trackArtist={track.artist.name}
           />
         ))}
-    </ul>
+    </>
   );
+
+  if (loading) {
+    content = <Skeleton count={7} style={SkeletonStyles.playlistContent} />;
+  }
+
+  return <ul className={classes['playlist__container']}>{content}</ul>;
 }
 
 export default Playlist;

@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+
 import { Track } from '../../../models/Tracks';
+import { useAppSelector } from '../../../store/hooks';
+import { SkeletonStyles } from '../../../styles/skeletonStyles';
 import classes from './TrackMidItems.module.css';
 
 interface Props {
@@ -15,6 +19,7 @@ function TrackMidItems({ title, tracks, onClickTrack }: Props) {
   const itemsRef = useRef<any>([]);
   const [currentItemIndex, setCurrentItemIndex] =
     useState<number>(ITEMS_TO_MOVE);
+  const loading = useAppSelector(state => state.tracks.loading);
 
   useEffect(() => {
     itemsRef.current = itemsRef.current.slice(0, tracks.length);
@@ -50,6 +55,45 @@ function TrackMidItems({ title, tracks, onClickTrack }: Props) {
     }
   };
 
+  let list = (
+    <>
+      {tracks.map((item, index) => (
+        <div
+          className={classes['track-mid-item__item-container']}
+          key={index}
+          ref={el => (itemsRef.current[index] = el)}
+          onClick={() => onClickTrack(item)}
+        >
+          <img
+            className={classes['track-mid-item__image']}
+            alt="Track image"
+            src={item.album.cover_medium}
+          />
+          <div className={classes['track-mid-item__title']}>{item.title}</div>
+          <div className={classes['track-mid-item__subtitle']}>
+            {item.artist.name}
+          </div>
+        </div>
+      ))}
+    </>
+  );
+
+  if (loading) {
+    list = (
+      <div style={SkeletonStyles.tracksContainer}>
+        <div style={SkeletonStyles.trackMinContainer}>
+          <Skeleton style={SkeletonStyles.tracksContent} />
+        </div>
+        <div style={SkeletonStyles.trackMinContainer}>
+          <Skeleton style={SkeletonStyles.tracksContent} />
+        </div>
+        <div style={SkeletonStyles.trackMinContainer}>
+          <Skeleton style={SkeletonStyles.tracksContent} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={classes['track-mid-item__container']}>
       <div className={classes['track-mid-item__header']}>
@@ -67,26 +111,7 @@ function TrackMidItems({ title, tracks, onClickTrack }: Props) {
           ></i>
         </div>
       </div>
-      <div className={classes['track-mid-item__list']}>
-        {tracks.map((item, index) => (
-          <div
-            className={classes['track-mid-item__item-container']}
-            key={index}
-            ref={el => (itemsRef.current[index] = el)}
-            onClick={() => onClickTrack(item)}
-          >
-            <img
-              className={classes['track-mid-item__image']}
-              alt="Track image"
-              src={item.album.cover_medium}
-            />
-            <div className={classes['track-mid-item__title']}>{item.title}</div>
-            <div className={classes['track-mid-item__subtitle']}>
-              {item.artist.name}
-            </div>
-          </div>
-        ))}
-      </div>
+      <div className={classes['track-mid-item__list']}>{list}</div>
     </div>
   );
 }

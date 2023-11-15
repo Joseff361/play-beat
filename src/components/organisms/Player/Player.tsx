@@ -1,8 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import PlayerService from '../../../services/PlayerService';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { switchPlayer } from '../../../store/slices/tracksSlice';
+import { SkeletonStyles } from '../../../styles/skeletonStyles';
 import ProgressBar from '../../atoms/ProgressBar/ProgressBar';
 import SwitchPlayer from '../../atoms/SwitchPlayer/SwitchPlayer';
 import Volume from '../../atoms/Volume/Volume';
@@ -19,6 +21,7 @@ function Player() {
 
   const currentTrack = useAppSelector(state => state.tracks.currentTrack);
   const isPlaying = useAppSelector(state => state.tracks.isPlaying);
+  const loading = useAppSelector(state => state.tracks.loading);
 
   useEffect(() => {
     PlayerService.player.addEventListener('canplaythrough', () => {
@@ -60,21 +63,37 @@ function Player() {
     return `00: ${Math.round(value)}`;
   };
 
+  let image = (
+    <img
+      className={classes['player__info__description__image']}
+      src={currentTrack?.album.cover_small}
+      alt="Track image"
+    />
+  );
+
+  let description = (
+    <div className={classes['player__info__description__text']}>
+      <b>{currentTrack?.artist.name}</b>
+      <div className={classes['player__info__description__track']}>
+        {currentTrack?.title}
+      </div>
+    </div>
+  );
+
+  if (loading) {
+    image = <Skeleton style={SkeletonStyles.playerImage} />;
+
+    description = (
+      <Skeleton count={2} style={SkeletonStyles.playerDescription} />
+    );
+  }
+
   return (
     <section className={classes['player__container']}>
       <div className={classes['player__info']}>
         <div className={classes['player__info__description']}>
-          <img
-            className={classes['player__info__description__image']}
-            src={currentTrack?.album.cover_small}
-            alt="Track image"
-          />
-          <div>
-            <b>{currentTrack?.artist.name}</b>
-            <div className={classes['player__info__description__track']}>
-              {currentTrack?.title}
-            </div>
-          </div>
+          {image}
+          {description}
         </div>
         <SwitchPlayer
           active
