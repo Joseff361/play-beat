@@ -54,3 +54,7 @@
   background-color: white;
   margin-left: 20px;
 }
+
+.main-track__button--follow:hover {
+  cursor: not-allowed;
+}

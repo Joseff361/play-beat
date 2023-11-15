@@ -65,7 +65,6 @@ function MainTrack() {
             {isPlaying ? 'Pause' : 'Play'}
           </button>
           <button
-            style={{ cursor: 'inherit' }}
             className={`${classes['main-track__button']} ${classes['main-track__button--follow']}`}
           >
             Follow

@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.player__timer-container:hover {
+  cursor: not-allowed;
+}
+
 .player__volume-container {
   width: 30%;
   display: flex;

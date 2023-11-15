@@ -17,6 +17,14 @@
   margin-right: 10px;
 }
 
+.profile__picture:hover {
+  cursor: not-allowed;
+}
+
 .profile__addon {
   margin-right: 40px;
+}
+
+.profile__addon:hover {
+  cursor: not-allowed;
 }
