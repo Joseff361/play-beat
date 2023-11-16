@@ -16,8 +16,6 @@ function MainTrack() {
     dispatch(switchPlayer());
   };
 
-  console.log(loading);
-
   let image = (
     <img
       className={classes['main-track__image']}

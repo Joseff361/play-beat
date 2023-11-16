@@ -33,6 +33,8 @@ interface SetCurrentTrack {
   autoplay: boolean;
 }
 
+type PlayDirection = 'back' | 'next';
+
 export const tracksSlice = createSlice({
   name: 'tracks',
   initialState,
@@ -69,6 +71,50 @@ export const tracksSlice = createSlice({
         PlayerService.player.play();
         state.isPlaying = true;
       }
+    },
+    playlistAction: (state, action: PayloadAction<PlayDirection>) => {
+      if (state.trackResultList.length <= 1) {
+        return;
+      }
+
+      const index = state.trackResultList.findIndex(
+        t => t.id === state.currentTrack?.id,
+      );
+
+      if (index === -1) {
+        return;
+      }
+
+      let newTrack;
+
+      switch (index) {
+        case 0:
+          if (action.payload === 'back') {
+            newTrack = state.trackResultList[state.trackResultList.length - 1];
+          } else {
+            newTrack = state.trackResultList[1];
+          }
+          break;
+        case state.trackResultList.length - 1:
+          if (action.payload === 'back') {
+            newTrack = state.trackResultList[state.trackResultList.length - 2];
+          } else {
+            newTrack = state.trackResultList[0];
+          }
+          break;
+        default:
+          if (action.payload === 'back') {
+            newTrack = state.trackResultList[index - 1];
+          } else {
+            newTrack = state.trackResultList[index + 1];
+          }
+          break;
+      }
+
+      state.currentTrack = newTrack;
+      PlayerService.player.src = newTrack.preview;
+      PlayerService.player.play();
+      state.isPlaying = true;
     },
   },
 });
@@ -115,6 +161,7 @@ export const {
   setTrackResultList,
   setAlbumRelatedTracks,
   switchPlayer,
+  playlistAction,
 } = tracksSlice.actions;
 
 export default tracksSlice.reducer;

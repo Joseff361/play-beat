@@ -3,17 +3,21 @@ import Skeleton from 'react-loading-skeleton';
 
 import PlayerService from '../../../services/PlayerService';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { switchPlayer } from '../../../store/slices/tracksSlice';
+import {
+  playlistAction,
+  switchPlayer,
+} from '../../../store/slices/tracksSlice';
 import { SkeletonStyles } from '../../../styles/skeletonStyles';
 import ProgressBar from '../../atoms/ProgressBar/ProgressBar';
 import SwitchPlayer from '../../atoms/SwitchPlayer/SwitchPlayer';
 import Volume from '../../atoms/Volume/Volume';
 import classes from './Player.module.css';
 
-const DEFAULT_VOLUMEN = 80;
+let consistentVolume = 0.6;
 
 function Player() {
-  const [volume, setVolume] = useState<number>(DEFAULT_VOLUMEN);
+  // volume scale for the range input (0-100)
+  const [volume, setVolume] = useState<number>(consistentVolume * 100);
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
 
@@ -25,9 +29,10 @@ function Player() {
 
   useEffect(() => {
     PlayerService.player.addEventListener('canplaythrough', () => {
-      PlayerService.player.volume = DEFAULT_VOLUMEN / 100;
       setDuration(PlayerService.player.duration);
-      setVolume(DEFAULT_VOLUMEN);
+
+      PlayerService.player.volume = consistentVolume;
+      setVolume(consistentVolume * 100);
     });
 
     PlayerService.player.addEventListener('timeupdate', () => {
@@ -45,8 +50,9 @@ function Player() {
   };
 
   const changeVolumeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    PlayerService.player.volume = +event.target.value / 100;
-    setVolume(+event.target.value);
+    consistentVolume = +event.target.value / 100;
+    PlayerService.player.volume = consistentVolume;
+    setVolume(consistentVolume * 100);
   };
 
   const handleClickVolumen = () => {
@@ -54,8 +60,8 @@ function Player() {
       PlayerService.player.volume = 0;
       setVolume(0);
     } else {
-      PlayerService.player.volume = DEFAULT_VOLUMEN / 100;
-      setVolume(DEFAULT_VOLUMEN);
+      PlayerService.player.volume = consistentVolume;
+      setVolume(consistentVolume * 100);
     }
   };
 
@@ -95,11 +101,19 @@ function Player() {
           {image}
           {description}
         </div>
+        <i
+          onClick={() => dispatch(playlistAction('back'))}
+          className="fa-solid fa-backward-step"
+        ></i>
         <SwitchPlayer
           active
           state={isPlaying ? 'stop' : 'play'}
           onClick={clickPlayer}
         />
+        <i
+          onClick={() => dispatch(playlistAction('next'))}
+          className="fa-solid fa-forward-step"
+        ></i>
       </div>
       <div className={classes['player__timer-container']}>
         <div>{formatTime(duration)}</div>

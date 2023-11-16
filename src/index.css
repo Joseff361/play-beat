@@ -43,9 +43,16 @@ body {
 .fa-volume-xmark,
 .fa-volume-off,
 .fa-volume-low,
-.fa-volume-high {
+.fa-volume-high,
+.fa-forward-step,
+.fa-backward-step {
   font-size: 22px;
   color: #979797;
+}
+
+.fa-forward-step,
+.fa-backward-step {
+  cursor: pointer;
 }
 
 .fa-angle-left {
