@@ -58,3 +58,56 @@
 .main-track__button--follow:hover {
   cursor: not-allowed;
 }
+
+@media screen and (max-width: 992px) {
+  .main-track__button--follow {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-track__container {
+    margin-bottom: 40px;
+  }
+
+  .main-track__image {
+    width: 30%;
+    height: auto;
+  }
+
+  .main-track__button--play {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .main-track__container {
+    margin-bottom: 20px;
+    flex-direction: column;
+    padding-top: 20px;
+  }
+
+  .main-track__image {
+    width: 50%;
+    height: auto;
+    border-radius: 50%;
+  }
+
+  .main-track__button--play {
+    display: none;
+  }
+
+  .main-track__title {
+    font-size: 22px;
+  }
+
+  .main-track__subtitle {
+    font-size: 18px;
+  }
+
+  .main-track__content {
+    text-align: center;
+    margin-top: 20px;
+  }
+}

@@ -28,3 +28,13 @@
 .profile__addon:hover {
   cursor: not-allowed;
 }
+
+@media screen and (max-width: 576px) {
+  .profile__addon {
+    display: none;
+  }
+
+  .profile__container {
+    display: none;
+  }
+}

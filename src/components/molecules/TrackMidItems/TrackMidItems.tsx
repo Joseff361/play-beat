@@ -102,7 +102,7 @@ function TrackMidItems({ title, tracks, onClickTrack }: Props) {
           <b> songs</b>
         </span>
         <span className={classes['track-mid-item__header__line']}></span>
-        <div>
+        <div className={classes['track-mid-item__actions']}>
           <i onClick={moveToLeft} className="fa-solid fa-angle-left"></i>
           <i
             onClick={moveToRigth}

@@ -14,3 +14,24 @@
   flex: 0.4;
   overflow: hidden;
 }
+
+@media screen and (max-width: 1200px) {
+  .content__container {
+    height: 76vh;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content__container {
+    flex-direction: column;
+    height: auto;
+    padding-top: 12vh;
+    padding-bottom: 12vh;
+  }
+
+  .content__related-results {
+    width: 90%;
+    align-self: center;
+    margin-top: 40px;
+  }
+}

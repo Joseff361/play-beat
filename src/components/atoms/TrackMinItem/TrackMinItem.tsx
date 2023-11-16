@@ -40,10 +40,10 @@ function TrackMinItem({
         <div className={classes['track-item__title']}>{trackName}</div>
         <div className={classes['track-item__artist']}>{trackArtist}</div>
       </div>
-      <span className={classes['track-item__container--small']}>
+      <span className={classes['track-item__container--small-icon']}>
         <i className="fa-regular fa-heart"></i>
       </span>
-      <span className={classes['track-item__container--small']}>
+      <span className={classes['track-item__container--small-icon']}>
         <SwitchPlayer onClick={() => null} />
       </span>
     </li>

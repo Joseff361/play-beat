@@ -65,3 +65,19 @@
 .track-mid-item__subtitle {
   color: #484848;
 }
+
+@media screen and (max-width: 768px) {
+  .track-mid-item__header {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .track-mid-item__actions {
+    display: none;
+  }
+
+  .track-mid-item__header__line {
+    margin-right: 0px;
+  }
+}

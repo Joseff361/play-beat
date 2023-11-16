@@ -44,3 +44,14 @@
 .searcher__input:focus {
   outline: none !important;
 }
+
+@media screen and (max-width: 576px) {
+  .searcher__container {
+    width: 100%;
+  }
+
+  .searcher__input {
+    height: 60%;
+    font-size: 16px;
+  }
+}

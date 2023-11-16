@@ -53,3 +53,23 @@
   width: 100px;
   white-space: nowrap;
 }
+
+@media screen and (max-width: 768px) {
+  .player__timer-container {
+    display: none;
+  }
+
+  .player__volume-container {
+    width: 30%;
+  }
+
+  .player__info {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .player__volume-input {
+    width: 70% !important;
+  }
+}

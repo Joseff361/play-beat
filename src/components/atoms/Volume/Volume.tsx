@@ -1,3 +1,5 @@
+import classes from './Volume.module.css';
+
 interface Props {
   volume: number;
   onClick: () => void;
@@ -17,7 +19,11 @@ function Volume({ volume, onClick }: Props) {
   }
 
   return (
-    <div onClick={onClick} style={{ cursor: 'pointer' }}>
+    <div
+      className={classes['volume']}
+      onClick={onClick}
+      style={{ cursor: 'pointer' }}
+    >
       {icon}
     </div>
   );

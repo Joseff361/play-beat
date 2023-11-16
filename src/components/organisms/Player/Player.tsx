@@ -130,6 +130,7 @@ function Player() {
           min={0}
           value={volume}
           onChange={changeVolumeHandler}
+          className={classes['player__volume-input']}
         />
         <Volume volume={volume} onClick={handleClickVolumen} />
       </div>
