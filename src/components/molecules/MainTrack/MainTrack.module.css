@@ -59,6 +59,19 @@
   cursor: not-allowed;
 }
 
+.main-track__image--skeleton {
+  height: 70%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  margin-right: 20px;
+  border-radius: 16px;
+}
+
+.main-track__content--skeleton {
+  height: 20%;
+  margin-bottom: 5%;
+}
+
 @media screen and (max-width: 992px) {
   .main-track__button--follow {
     display: none;
@@ -78,6 +91,11 @@
   .main-track__button--play {
     width: 100%;
     margin-top: 20px;
+  }
+
+  .main-track__image--skeleton {
+    width: 30%;
+    height: auto;
   }
 }
 
@@ -109,5 +127,17 @@
   .main-track__content {
     text-align: center;
     margin-top: 20px;
+    width: 100%;
+  }
+
+  .main-track__image--skeleton {
+    width: 50%;
+    height: auto;
+    border-radius: 50%;
+  }
+
+  .main-track__content--skeleton {
+    height: 25px;
+    margin-bottom: 6px;
   }
 }

@@ -6,7 +6,7 @@ import Profile from '../../atoms/Profile/Profile';
 import Searcher from '../../molecules/Searcher/Searcher';
 import classes from './Header.module.css';
 
-const INIT_SEARCH = encodeURI('moonshine');
+const INIT_SEARCH = encodeURI('last summer whisper');
 
 function Header() {
   const dispatch = useAppDispatch();

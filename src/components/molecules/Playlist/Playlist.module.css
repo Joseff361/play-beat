@@ -17,3 +17,21 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.playlist_container--skeleton {
+  height: 12%;
+  width: 92%;
+  margin-bottom: 0.1%;
+  border-radius: 8;
+  overflow: hidden;
+  margin-left: 4%;
+}
+
+@media screen and (max-width: 768px) {
+  .playlist_container--skeleton {
+    border-radius: 8;
+    overflow: hidden;
+    width: 100%;
+    height: 40px;
+  }
+}

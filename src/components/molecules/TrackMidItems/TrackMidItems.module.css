@@ -66,9 +66,29 @@
   color: #484848;
 }
 
+.track-mid-item--skeleton {
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.track-mid-item__mid--skeleton {
+  width: 32%;
+  height: 100%;
+}
+
+.track-mid-item__mid-content--skeleton {
+  height: 90%;
+  border-radius: 16;
+}
+
 @media screen and (max-width: 768px) {
   .track-mid-item__header {
     margin-bottom: 20px;
+  }
+
+  .track-mid-item--skeleton {
+    height: 300px;
   }
 }
 

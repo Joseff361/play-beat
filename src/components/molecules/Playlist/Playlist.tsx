@@ -3,7 +3,6 @@ import Skeleton from 'react-loading-skeleton';
 import { Track } from '../../../models/Tracks';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { setCurrentTrack } from '../../../store/slices/tracksSlice';
-import { SkeletonStyles } from '../../../styles/skeletonStyles';
 import TrackMinItem from '../../atoms/TrackMinItem/TrackMinItem';
 import classes from './Playlist.module.css';
 
@@ -36,7 +35,9 @@ function Playlist() {
   );
 
   if (loading) {
-    content = <Skeleton count={7} style={SkeletonStyles.playlistContent} />;
+    content = (
+      <Skeleton count={7} className={classes['playlist_container--skeleton']} />
+    );
   }
 
   return <ul className={classes['playlist__container']}>{content}</ul>;

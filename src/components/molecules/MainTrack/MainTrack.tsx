@@ -2,7 +2,6 @@ import Skeleton from 'react-loading-skeleton';
 
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { switchPlayer } from '../../../store/slices/tracksSlice';
-import { SkeletonStyles } from '../../../styles/skeletonStyles';
 import classes from './MainTrack.module.css';
 
 function MainTrack() {
@@ -38,14 +37,17 @@ function MainTrack() {
 
   if (loading) {
     image = (
-      <div style={SkeletonStyles.mainTrackImage}>
+      <div className={classes['main-track__image--skeleton']}>
         <Skeleton style={{ height: '100%' }} />
       </div>
     );
 
     content = (
-      <div style={{ height: '80%' }}>
-        <Skeleton count={3} style={SkeletonStyles.mainTrackContent} />
+      <div style={{ height: '80%', width: '100%' }}>
+        <Skeleton
+          count={3}
+          className={classes['main-track__content--skeleton']}
+        />
       </div>
     );
   }

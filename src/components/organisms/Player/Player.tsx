@@ -7,7 +7,6 @@ import {
   playlistAction,
   switchPlayer,
 } from '../../../store/slices/tracksSlice';
-import { SkeletonStyles } from '../../../styles/skeletonStyles';
 import ProgressBar from '../../atoms/ProgressBar/ProgressBar';
 import SwitchPlayer from '../../atoms/SwitchPlayer/SwitchPlayer';
 import Volume from '../../atoms/Volume/Volume';
@@ -87,10 +86,17 @@ function Player() {
   );
 
   if (loading) {
-    image = <Skeleton style={SkeletonStyles.playerImage} />;
+    image = (
+      <Skeleton
+        className={classes['player__info__description__image--skeleton']}
+      />
+    );
 
     description = (
-      <Skeleton count={2} style={SkeletonStyles.playerDescription} />
+      <Skeleton
+        count={2}
+        className={classes['player__info__description__text--skeleton']}
+      />
     );
   }
 

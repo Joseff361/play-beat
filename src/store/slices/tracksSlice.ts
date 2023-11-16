@@ -148,8 +148,8 @@ export const setUpTracksAndAlbums = (
           );
         dispatch(tracksSlice.actions.setArtistRelatedTracks(artistTracks));
       }
-    } catch {
-      alert('error!');
+    } catch (e) {
+      console.log(e);
     } finally {
       dispatch(tracksSlice.actions.updateLoadingState(false));
     }

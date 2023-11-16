@@ -3,7 +3,6 @@ import Skeleton from 'react-loading-skeleton';
 
 import { Track } from '../../../models/Tracks';
 import { useAppSelector } from '../../../store/hooks';
-import { SkeletonStyles } from '../../../styles/skeletonStyles';
 import classes from './TrackMidItems.module.css';
 
 interface Props {
@@ -80,15 +79,21 @@ function TrackMidItems({ title, tracks, onClickTrack }: Props) {
 
   if (loading) {
     list = (
-      <div style={SkeletonStyles.tracksContainer}>
-        <div style={SkeletonStyles.trackMinContainer}>
-          <Skeleton style={SkeletonStyles.tracksContent} />
+      <div className={classes['track-mid-item--skeleton']}>
+        <div className={classes['track-mid-item__mid--skeleton']}>
+          <Skeleton
+            className={classes['track-mid-item__mid-content--skeleton']}
+          />
         </div>
-        <div style={SkeletonStyles.trackMinContainer}>
-          <Skeleton style={SkeletonStyles.tracksContent} />
+        <div className={classes['track-mid-item__mid--skeleton']}>
+          <Skeleton
+            className={classes['track-mid-item__mid-content--skeleton']}
+          />
         </div>
-        <div style={SkeletonStyles.trackMinContainer}>
-          <Skeleton style={SkeletonStyles.tracksContent} />
+        <div className={classes['track-mid-item__mid--skeleton']}>
+          <Skeleton
+            className={classes['track-mid-item__mid-content--skeleton']}
+          />
         </div>
       </div>
     );
